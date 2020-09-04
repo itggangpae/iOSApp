@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         request.httpMethod = "POST"
         
         // HTTP Request Parameters which will be sent in HTTP Request Body
-        let postString = "email=email&pw=password";
+        let postString = "email=ggangpae1@gmail.com&pw=1234";
         // Set HTTP Request Body
         request.httpBody = postString.data(using: String.Encoding.utf8);
         // Perform HTTP Request

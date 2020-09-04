@@ -159,6 +159,7 @@ class ViewController: UIViewController {
          webView.loadHTMLString(htmlString, baseURL: nil)
          */
         
+        /*
         let parameterS: Parameters = ["itemname": "과자", "description":"맛있다", "price":"1500"]
         AF.upload(
             multipartFormData: { multipartFormData in
@@ -170,6 +171,23 @@ class ViewController: UIViewController {
                 let image = UIImage(named: "red.jpg")
                 multipartFormData.append(image!.jpegData(compressionQuality: 0.5)!, withName: "pictureurl" , fileName: "file.jpeg", mimeType: "image/jpeg")
         },to: "http://cyberadam.cafe24.com/item/insert", method: .post , headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                NSLog(String(data:response.data!, encoding: .utf8)!)
+        }
+ */
+        
+        let parameterS: Parameters = ["email": "ggangpae2@gmail.com", "nickname":"군계2", "pw":"1234"]
+        AF.upload(
+            multipartFormData: { multipartFormData in
+                for (key, value) in parameterS {
+                    if let temp = value as? String {
+                        multipartFormData.append(temp.data(using: .utf8)!, withName: key)
+                    }
+                }
+                let image = UIImage(named: "red.jpg")
+                multipartFormData.append(image!.jpegData(compressionQuality: 0.5)!, withName: "profile" , fileName: "file.jpeg", mimeType: "image/jpeg")
+        },to: "http://cyberadam.cafe24.com/member/join", method: .post , headers: nil)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 NSLog(String(data:response.data!, encoding: .utf8)!)
