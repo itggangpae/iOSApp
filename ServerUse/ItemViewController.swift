@@ -76,7 +76,7 @@ class ItemViewController: UITableViewController {
                         
                         let sql = """
                           INSERT INTO item (itemid, itemname, price, description, pictureurl, updatedate)
-                          VALUES (:itemid, :itemname, :price, :description, :pictureurl, :updatedate)
+                          VALUES (:itemid, :itemname, :price, :description, :pictureurl)
                         """
                         
                         var paramDictionary = [String:Any]()
@@ -85,7 +85,7 @@ class ItemViewController: UITableViewController {
                         paramDictionary["price"] = item.price!
                         paramDictionary["description"] = item.description!
                         paramDictionary["pictureurl"] = item.pictureurl!
-                        paramDictionary["updatedate"] = item.updatedate!
+                        //paramDictionary["updatedate"] = item.updatedate!
                         itemDB.executeUpdate(sql, withParameterDictionary: paramDictionary)
                     }
                     NSLog("데이터 저장 성공")
@@ -107,6 +107,7 @@ class ItemViewController: UITableViewController {
                         fileMgr.createFile(atPath: updatePath, contents: databuffer, attributes: nil)
                     }
                 }
+                
             }
         }
         else{
